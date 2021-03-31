@@ -351,6 +351,12 @@ aside {
         display: flex;
         flex-wrap: wrap;
     }
+    
+    .container__left,
+    .container__right,
+    .container__bottom {
+        margin-top: 10px;
+    }
     aside {
         display: none;
     }
