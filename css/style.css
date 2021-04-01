@@ -495,5 +495,7 @@ aside {
   aside {
     display: none;
   }
+  .container__bottom {
+    background-color: blue;
 }
 /*# sourceMappingURL=style.css.map */
