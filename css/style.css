@@ -46,7 +46,9 @@ header {
   -ms-grid-columns: 1fr 2fr 2fr;
       grid-template-columns: 1fr 2fr 2fr;
   gap: 10px;
-      grid-template-areas: "aside slider slider" "aside left right" "bottom bottom bottom";
+      grid-template-areas: "aside slider slider"
+ "aside left right"
+ "bottom bottom bottom";
   text-align: center;
   width: 90%;
 }
@@ -453,18 +455,38 @@ aside {
   .wrapper {
     -ms-grid-columns: 1fr 2fr;
         grid-template-columns: 1fr 2fr;
-        grid-template-areas: "slider slider" "aside left" "aside right" "bottom bottom";
+        grid-template-areas: "slider slider"
+ "aside left"
+ "aside right"
+ "bottom bottom";
+  }
+  
+  .slider {
+    grid-area: slider;
+  }
+
+.container__left {
+    grid-area: left;
+  }
+
+.container__right {
+    grid-area: right;
+  }
+
+.container__bottom {
+    grid-area: bottom;
+  }
+
+aside {
+    grid-area: aside;
   }
 }
 
 @media (max-width: 576px) {
   .wrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    display: block;
   }
+  
   .container__left,
   .container__right,
   .container__bottom {
