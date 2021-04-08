@@ -39,7 +39,7 @@ header {
   border-bottom: 10px solid white;
 }
 
-header button {
+button {
   width: 100px;
   height: 50px;
   background-color: black;
@@ -578,11 +578,20 @@ aside {
 }
 
 @media (max-width: 576px) {
-  * {
-    margin: 0;
+  body {
+    min-width: 360px;
+  }
+  button {
+    width: 70px;
+    height: 40px;
+    right: 5%;
+    background-color: #4b4bc4;
   }
   .wrapper {
     display: block;
+  }
+  .wrapper .modalWindow .window {
+    max-width: 360px;
   }
   .container__left,
   .container__right,

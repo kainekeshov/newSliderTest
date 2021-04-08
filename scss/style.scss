@@ -32,11 +32,22 @@ header {
     height: 50px;
     position: fixed;
     top: 0;
-    z-index: 999;
+    z-index: 1;
     background-color: #b8b3e9;
     margin: 0;
     border-radius: 0 0 30px 30px;
     border-bottom: 10px solid white;
+}
+
+button {
+    width: 100px;
+    height: 50px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    outline: none;
+    position: absolute;
+    right: 50px;
+    border-radius: 15px;
 }
 
 .wrapper {
@@ -50,6 +61,46 @@ header {
         "bottom bottom bottom";
     text-align: center;
     width: 90%;
+
+    .modalWindow {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.63);
+        z-index: 2;
+
+        .window {
+            width: 500px;
+            height: 300px;
+            position: absolute;
+            background-color: white;
+            border-radius: 5px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-name: showModal;
+            animation-duration: 0.8s;
+            animation-fill-mode: forwards;
+
+            i {
+                display: block;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                color: rgba(0, 0, 0, 0.418);
+
+                &:hover {
+                    color: rgb(0, 0, 0);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .active {
+        display: block;
+    }
 }
 
 .slider {
@@ -278,6 +329,15 @@ aside {
     display: block;
 }
 
+.wrapper__inner {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    border-radius: 30px 0;
+    overflow: hidden;
+
+}
+
 //* <--------- Animations --------->
 
 @keyframes fromRightToLeft {
@@ -333,31 +393,81 @@ aside {
     }
 }
 
+@keyframes showModal {
+    from {
+        top: -100%;
+        opacity: 0;
+    }
+
+    to {
+        top: 50%;
+        opacity: 1;
+    }
+}
+
 // //* <--------- Adaptive --------->
 
 @media (max-width : 1024px) {
     .wrapper {
         grid-template-columns: 1fr 2fr;
-        grid-template-areas: 
+        grid-template-areas:
             "slider slider"
             "aside left"
             "aside right"
             "bottom bottom";
     }
+
+    .slider {
+        grid-area: slider;
+    }
+
+    .container__left {
+        grid-area: left;
+    }
+
+    .container__right {
+        grid-area: right;
+    }
+
+    .container__bottom {
+        grid-area: bottom;
+    }
+
+    aside {
+        grid-area: aside;
+    }
 }
 
 @media (max-width : 576px) {
-    .wrapper {
-        display: flex;
-        flex-wrap: wrap;
+    body {
+        min-width: 360px;
     }
-    
+
+    button {
+        width: 70px;
+        height: 40px;
+        right: 5%;
+        background-color: rgb(75, 75, 196);
+    }
+
+    .wrapper {
+        display: block;
+        .modalWindow {
+            .window {
+                max-width: 360px;
+            }
+        }
+    }
+
     .container__left,
     .container__right,
     .container__bottom {
         margin-top: 10px;
     }
+
     aside {
         display: none;
     }
+
+
 }
