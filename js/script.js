@@ -174,6 +174,7 @@ function updateDots(index, dotsArr) {
 let modal = document.querySelector('.modalWindow');
 let button = document.querySelector('.button');
 let close = document.querySelector('.fa-times-circle');
+let body = document.querySelector('.body');
 
 button.setAttribute('onclick', 'showModal()');
 
@@ -183,10 +184,12 @@ modal.addEventListener('click', hideModal);
 
 function showModal() {
     modal.classList.add('active');
+    body.classList.add('hidden');
 };
 
 function closeModal() {
     modal.classList.remove('active');
+    body.classList.remove('hidden');
 };
 
 function hideModal(event) {

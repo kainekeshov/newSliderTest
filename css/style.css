@@ -425,6 +425,10 @@ aside {
   overflow: hidden;
 }
 
+.hidden {
+  overflow: hidden;
+}
+
 @-webkit-keyframes fromRightToLeft {
   from {
     margin-left: 80%;
