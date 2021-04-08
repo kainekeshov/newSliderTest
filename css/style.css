@@ -32,11 +32,22 @@ header {
   height: 50px;
   position: fixed;
   top: 0;
-  z-index: 999;
+  z-index: 1;
   background-color: #b8b3e9;
   margin: 0;
   border-radius: 0 0 30px 30px;
   border-bottom: 10px solid white;
+}
+
+header button {
+  width: 100px;
+  height: 50px;
+  background-color: black;
+  color: white;
+  outline: none;
+  position: absolute;
+  right: 50px;
+  border-radius: 15px;
 }
 
 .wrapper {
@@ -46,11 +57,55 @@ header {
   -ms-grid-columns: 1fr 2fr 2fr;
       grid-template-columns: 1fr 2fr 2fr;
   gap: 10px;
-      grid-template-areas: "aside slider slider"
- "aside left right"
- "bottom bottom bottom";
+      grid-template-areas: "aside slider slider" "aside left right" "bottom bottom bottom";
   text-align: center;
   width: 90%;
+}
+
+.wrapper .modalWindow {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.63);
+  z-index: 2;
+}
+
+.wrapper .modalWindow .window {
+  width: 500px;
+  height: 300px;
+  position: absolute;
+  background-color: white;
+  border-radius: 5px;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-animation-name: showModal;
+          animation-name: showModal;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.wrapper .modalWindow .window i {
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: rgba(0, 0, 0, 0.418);
+}
+
+.wrapper .modalWindow .window i:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.wrapper .active {
+  display: block;
 }
 
 .slider {
@@ -357,6 +412,19 @@ aside {
   display: block;
 }
 
+.wrapper__inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  border-radius: 30px 0;
+  overflow: hidden;
+}
+
 @-webkit-keyframes fromRightToLeft {
   from {
     margin-left: 80%;
@@ -451,42 +519,71 @@ aside {
   }
 }
 
+@-webkit-keyframes showModal {
+  from {
+    top: -100%;
+    opacity: 0;
+  }
+  to {
+    top: 50%;
+    opacity: 1;
+  }
+}
+
+@keyframes showModal {
+  from {
+    top: -100%;
+    opacity: 0;
+  }
+  to {
+    top: 50%;
+    opacity: 1;
+  }
+}
+
 @media (max-width: 1024px) {
   .wrapper {
     -ms-grid-columns: 1fr 2fr;
         grid-template-columns: 1fr 2fr;
-        grid-template-areas: "slider slider"
- "aside left"
- "aside right"
- "bottom bottom";
+        grid-template-areas: "slider slider" "aside left" "aside right" "bottom bottom";
   }
-  
   .slider {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
     grid-area: slider;
   }
-
-.container__left {
+  .container__left {
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
     grid-area: left;
   }
-
-.container__right {
+  .container__right {
+    -ms-grid-row: 3;
+    -ms-grid-column: 2;
     grid-area: right;
   }
-
-.container__bottom {
+  .container__bottom {
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
     grid-area: bottom;
   }
-
-aside {
+  aside {
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 2;
+    -ms-grid-column: 1;
     grid-area: aside;
   }
 }
 
 @media (max-width: 576px) {
+  * {
+    margin: 0;
+  }
   .wrapper {
     display: block;
   }
-  
   .container__left,
   .container__right,
   .container__bottom {
@@ -495,7 +592,5 @@ aside {
   aside {
     display: none;
   }
-  .container__bottom {
-    background-color: blue;
 }
 /*# sourceMappingURL=style.css.map */

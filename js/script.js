@@ -167,3 +167,30 @@ function updateDots(index, dotsArr) {
 
     dotsArr[index].classList.add('active');
 };
+
+
+//! Modal Window
+
+let modal = document.querySelector('.modalWindow');
+let button = document.querySelector('.button');
+let close = document.querySelector('.fa-times-circle');
+
+button.setAttribute('onclick', 'showModal()');
+
+close.setAttribute('onclick', 'closeModal()');
+
+modal.addEventListener('click', hideModal);
+
+function showModal() {
+    modal.classList.add('active');
+};
+
+function closeModal() {
+    modal.classList.remove('active');
+};
+
+function hideModal(event) {
+    if (event.target === modal) {
+        closeModal();
+    };
+};
